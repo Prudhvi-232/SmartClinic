@@ -407,6 +407,30 @@ const DropdownForm = () => {
     const renderForm = () => {
 
         switch (selectedOption) {
+            case 'Covid 19':
+                return (
+                    <div>
+                        <form >
+                            <div>
+                                <input
+                                    type="file"
+                                    className="w-[420px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    onChange={handleCovidInputChange}
+                                />
+
+                            </div>
+                            <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleCovidFormChange}>Diagnose Me</button>
+                        </form>
+                        <div>
+                            <h3 className={visibility}>
+                                The probability of you having Covid-19 is  <span className={probColour}>{prob}</span>!!
+                            </h3>
+                        </div>
+                    </div>
+                );
+
+            
+            
 
             case 'Diabetes':
                 return (
