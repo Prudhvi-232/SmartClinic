@@ -1,18 +1,18 @@
-import { useState } from "react";
-import DiagnosesHeading from "../Components/DiagnosesHeading";
-import { useEffect } from "react";
+import { useState } from 'react';
+import DiagnosesHeading from '../Components/DiagnosesHeading';
+import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DropdownForm = () => {
-	const jwt = sessionStorage.getItem("jwt");
 
-	const navigate = useNavigate();
-	const navigateToLogin = () => {
-		navigate("/login");
+    const jwt = sessionStorage.getItem('jwt');
+    const navigate = useNavigate();x
+    const navigateToLogin = () => {
+        navigate('/login');
     };
-    
+
     const  getValueBetweenZeroAndOne = (input)=> {
         if (input === 0 || input === 1) {
           return Math.random();
@@ -28,7 +28,7 @@ const DropdownForm = () => {
       
         const result = Math.abs(hs) / 0x7FFFFFFF;
         return result;
-    }
+      }
 
     const [prob, setprob] = useState("");
     const [probColour, setProbColour] = useState("ml-[10px] text-[#07f79f]");
@@ -127,6 +127,7 @@ const DropdownForm = () => {
         }
 
     }
+
 
     const [thyroidFormData, setThyroidFormData] = useState({
         age: '',
@@ -256,7 +257,6 @@ const DropdownForm = () => {
         }
 
     };
-
 
     const [covidImage, setCovidImage] = useState('');
     const handleCovidInputChange = (e) => {
@@ -404,6 +404,7 @@ const DropdownForm = () => {
             toast.error("Please login to use all the functions!!")
         }
     }
+
     const renderForm = () => {
 
         switch (selectedOption) {
@@ -428,6 +429,7 @@ const DropdownForm = () => {
                         </div>
                     </div>
                 );
+
 
             case 'BreastCancer':
                 return (
@@ -709,6 +711,8 @@ const DropdownForm = () => {
                     </div>
                 );
 
+
+
             case 'Pneumonia':
                 return (
                     <div>
@@ -730,7 +734,7 @@ const DropdownForm = () => {
                         </div>
                     </div>
                 );
-            
+
 
             case 'Diabetes':
                 return (
@@ -818,28 +822,29 @@ const DropdownForm = () => {
         }
     };
 
+    return (
+        <section className="py-[100px]">
+            <div className='text-center inline-block'>
+                <DiagnosesHeading />
+                <div className="text-start">
+                    <select className="" onChange={handleDropdownChange}>
+                        <option value="Covid 19">Covid 19</option>
+                        <option value="BreastCancer">Breast Cancer</option>
+                        <option value="Thyroid">Thyroid</option>
+                        <option value="Pneumonia">Pneumonia</option>
+                        <option value="Diabetes">Diabetes</option>
 
-
-	return (
-		<section className="py-[100px]">
-			<div className="text-center inline-block">
-				<DiagnosesHeading />
-				<div className="text-start">
-					<select className="" onChange={handleDropdownChange}>
-						<option value="Covid 19">Covid 19</option>
-						<option value="BreastCancer">Breast Cancer</option>
-						<option value="Thyroid">Thyroid</option>
-						<option value="Pneumonia">Pneumonia</option>
-						<option value="Diabetes">Diabetes</option>
-					</select>
-				</div>
-				<div className="text-center shadow-lg  px-[35px] py-[20px] rounded-lg w-[800px] ">
-					<div className="py-[10px]">{renderForm()}</div>
-				</div>
-			</div>
-			<ToastContainer />
-		</section>
-	);
+                    </select>
+                </div>
+                <div className='text-center shadow-lg  px-[35px] py-[20px] rounded-lg w-[800px] '>
+                    <div className="py-[10px]">
+                        {renderForm()}
+                    </div>
+                </div>
+            </div>
+        <ToastContainer />
+        </section>
+    );
 };
 
 export default DropdownForm;
