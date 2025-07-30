@@ -258,6 +258,155 @@ const DropdownForm = () => {
     };
 
 
+    const [covidImage, setCovidImage] = useState('');
+    const handleCovidInputChange = (e) => {
+        setCovidImage(e.target.files[0]);
+        setVisibility("font-bold text-[30px] hidden");
+    }
+
+    const handleCovidFormChange = async (e) => {
+        if (jwt) {
+            e.preventDefault();
+            try {
+                const formData = new FormData();
+                formData.append('image', covidImage);
+
+                const response = await fetch(' http://127.0.0.1:5000/diagnose_Covid', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const data = await response.json();
+                console.log(data)
+                if (data.status === 'success') {
+                    setVisibility("font-bold text-[30px] flex");
+                    const probability = getValueBetweenZeroAndOne(data.probability);
+                    setprob(probability);
+                    setCovidImage('');
+                } else if (data.status === 'failed') {
+                    console.log("The status code:", data.status);
+                    console.log("diagnose failed");
+                }
+
+            } catch (err) {
+                console.error(`Error diagnosing the user`, err.message);
+            }
+        } else {
+            navigateToLogin();
+            toast.error("Please login to use all the functions!!")
+
+        }
+    }
+
+    const [breastCancerFormData, setBreastCancerFormData] = useState({
+        radius_mean: '',
+        texture_mean: '',
+        perimeter_mean: '',
+        area_mean: '',
+        smoothness_mean: '',
+        compactness_mean: '',
+        concavity_mean: '',
+        concave_points_mean: '',
+        radius_worst: '',
+        texture_worst: '',
+        perimeter_worst: '',
+        area_worst: '',
+        smoothness_worst: '',
+        compactness_worst: '',
+        concavity_worst: '',
+        concave_points_worst: '',
+        symmetry_worst: '',
+        fractal_dimension_worst: '',
+    });
+
+    const handleBreastCancerInputChange = (e, fieldName) => {
+        setBreastCancerFormData({
+            ...breastCancerFormData,
+            [fieldName]: e.target.value,
+        });
+        setVisibility("font-bold text-[30px] hidden");
+    };
+
+    const handleBreastCancerFormChange = async (e) => {
+        if (jwt) {
+            e.preventDefault();
+            try {
+                const response = await fetch(` http://127.0.0.1:5000/diagnose_Breast_Cancer`, {
+                    method: 'POST',
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        "radius_mean": parseFloat(breastCancerFormData.radius_mean),
+                        "texture_mean": parseFloat(breastCancerFormData.texture_mean),
+                        "perimeter_mean": parseFloat(breastCancerFormData.perimeter_mean),
+                        "area_mean": parseFloat(breastCancerFormData.area_mean),
+                        "smoothness_mean": parseFloat(breastCancerFormData.smoothness_mean),
+                        "compactness_mean": parseFloat(breastCancerFormData.compactness_mean),
+                        "concavity_mean": parseFloat(breastCancerFormData.concavity_mean),
+                        "concave_points_mean": parseFloat(breastCancerFormData.concave_points_mean),
+                        "radius_worst": parseFloat(breastCancerFormData.radius_worst),
+                        "texture_worst": parseFloat(breastCancerFormData.texture_worst),
+                        "perimeter_worst": parseFloat(breastCancerFormData.perimeter_worst),
+                        "area_worst": parseFloat(breastCancerFormData.area_worst),
+                        "smoothness_worst": parseFloat(breastCancerFormData.smoothness_worst),
+                        "compactness_worst": parseFloat(breastCancerFormData.compactness_worst),
+                        "concavity_worst": parseFloat(breastCancerFormData.concavity_worst),
+                        "concave_points_worst": parseFloat(breastCancerFormData.concave_points_worst),
+                        "symmetry_worst": parseFloat(breastCancerFormData.symmetry_worst),
+                        "fractal_dimension_worst": parseFloat(breastCancerFormData.fractal_dimension_worst)
+                    }),
+                })
+                const data = await response.json();
+
+                console.log(data);
+
+                if (data.status === 'success') {
+
+                    setVisibility("font-bold text-[30px] flex");
+                    const probability = getValueBetweenZeroAndOne(data.probability);
+                    setprob(probability);
+
+                    setBreastCancerFormData({
+                        radius_mean: '',
+                        texture_mean: '',
+                        perimeter_mean: '',
+                        area_mean: '',
+                        smoothness_mean: '',
+                        compactness_mean: '',
+                        concavity_mean: '',
+                        concave_points_mean: '',
+                        radius_worst: '',
+                        texture_worst: '',
+                        perimeter_worst: '',
+                        area_worst: '',
+                        smoothness_worst: '',
+                        compactness_worst: '',
+                        concavity_worst: '',
+                        concave_points_worst: '',
+                        symmetry_worst: '',
+                        fractal_dimension_worst: '',
+                    });
+                }
+                if (data.status === 'failed') {
+                    console.log("The status code :", data.status)
+                    console.log("diagnose failed");
+                }
+
+
+            } catch (err) {
+                console.error(`Error diagnosing the user`, err.message);
+
+            }
+        } else {
+            navigateToLogin();
+            toast.error("Please login to use all the functions!!")
+        }
+    }
+
+
+
 	return (
 		<section className="py-[100px]">
 			<div className="text-center inline-block">
