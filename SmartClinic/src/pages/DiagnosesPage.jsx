@@ -591,7 +591,125 @@ const DropdownForm = () => {
                     </div>
                 );
 
-            
+            case 'Thyroid':
+                return (
+                    <div>
+                        <form >
+                            <div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type='number'
+                                        min='0'
+                                        max='1'
+                                        placeholder='on thyroxine'
+                                        value={thyroidFormData.on_thyroxine}
+                                        onChange={(e) => handleThyroidInputChange(e, 'on_thyroxine')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type='number'
+                                        min='0'
+                                        max='1'
+                                        placeholder='query on thyroxine'
+                                        value={thyroidFormData.query_on_thyroxine}
+                                        onChange={(e) => handleThyroidInputChange(e, 'query_on_thyroxine')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type='number'
+                                        min='0'
+                                        max='1'
+                                        placeholder='on antithyroid medication'
+                                        value={thyroidFormData.on_antithyroid_medication}
+                                        onChange={(e) => handleThyroidInputChange(e, 'on_antithyroid_medication')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type='number'
+                                        min='0'
+                                        max='1'
+                                        placeholder='pregnant'
+                                        value={thyroidFormData.pregnant}
+                                        onChange={(e) => handleThyroidInputChange(e, 'pregnant')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type='number'
+                                        min='0'
+                                        max='1'
+                                        placeholder='thyroid surgery '
+                                        value={thyroidFormData.thyroid_surgery}
+                                        onChange={(e) => handleThyroidInputChange(e, 'thyroid_surgery')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+
+                                    <input
+                                        type='number'
+                                        min='0'
+                                        max='1'
+                                        placeholder='tumor'
+                                        value={thyroidFormData.tumor}
+                                        onChange={(e) => handleThyroidInputChange(e, 'tumor')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='T3'
+                                        value={thyroidFormData.T3}
+                                        onChange={(e) => handleThyroidInputChange(e, 'T3')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='TT4'
+                                        value={thyroidFormData.TT4}
+                                        onChange={(e) => handleThyroidInputChange(e, 'TT4')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    /><input
+                                        type="text"
+                                        placeholder='T4U'
+                                        value={thyroidFormData.T4U}
+                                        onChange={(e) => handleThyroidInputChange(e, 'T4U')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='FTI'
+                                        value={thyroidFormData.FTI}
+                                        onChange={(e) => handleThyroidInputChange(e, 'FTI')}
+                                        className="w-[420px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                            </div>
+                            <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleThyroidFormChange}>Diagnose Me</button>
+                        </form>
+                        <div>
+                            <h3 className={visibility}>
+                                The probability of you having Thyroid is  <span className={probColour}>{prob}</span>!!
+                            </h3>
+                        </div>
+                    </div>
+                );
+
+
 
             case 'Diabetes':
                 return (
