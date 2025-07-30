@@ -404,6 +404,95 @@ const DropdownForm = () => {
             toast.error("Please login to use all the functions!!")
         }
     }
+    const renderForm = () => {
+
+        switch (selectedOption) {
+
+            case 'Diabetes':
+                return (
+                    <div>
+                        <form>
+                            <div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='Pregnancies'
+                                        value={diabetesFormData.pregnancies}
+                                        onChange={(e) => handleDiabetesInputChange(e, 'pregnancies')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='Glucose'
+                                        value={diabetesFormData.glucose}
+                                        onChange={(e) => handleDiabetesInputChange(e, 'glucose')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='BloodPressure'
+                                        value={diabetesFormData.bloodPressure}
+                                        onChange={(e) => handleDiabetesInputChange(e, 'bloodPressure')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='SkinThickness'
+                                        value={diabetesFormData.skinThickness}
+                                        onChange={(e) => handleDiabetesInputChange(e, 'skinThickness')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='Insulin'
+                                        value={diabetesFormData.insulin}
+                                        onChange={(e) => handleDiabetesInputChange(e, 'insulin')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='BMI'
+                                        value={diabetesFormData.bmi}
+                                        onChange={(e) => handleDiabetesInputChange(e, 'bmi')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='DiabetesPedigreeFunction'
+                                        value={diabetesFormData.diabetesPedigreeFunction}
+                                        onChange={(e) => handleDiabetesInputChange(e, 'diabetesPedigreeFunction')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='Age'
+                                        value={diabetesFormData.age}
+                                        onChange={(e) => handleDiabetesInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                            </div>
+                            <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleDiabetesFormChange}>Diagnose Me</button>
+                        </form>
+                        <div>
+                            <h3 className={visibility}>
+                                The probability of you having Diabetes is  <span className={probColour}>{prob}</span>!!
+                            </h3>
+                        </div>
+                    </div>
+                );
+
+
+            default:
+                return null;
+        }
+    };
 
 
 
