@@ -128,6 +128,135 @@ const DropdownForm = () => {
 
     }
 
+    const [thyroidFormData, setThyroidFormData] = useState({
+        age: '',
+        on_thyroxine: '',
+        query_on_thyroxine: '',
+        on_antithyroid_medication: '',
+        pregnant: '',
+        thyroid_surgery: '',
+        tumor: '',
+        T3: '',
+        TT4: '',
+        T4U: '',
+        FTI: '',
+    });
+
+    const handleThyroidInputChange = (event, fieldName) => {
+        setThyroidFormData({
+            ...thyroidFormData,
+            [fieldName]: event.target.value,
+        });
+        setVisibility("font-bold text-[30px] hidden");
+    };
+
+    const handleThyroidFormChange = async (e) => {
+        if (jwt) {
+            e.preventDefault();
+            try {
+                const response = await fetch(` http://127.0.0.1:5000/diagnose_Thyroid`, {
+                    method: 'POST',
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        "age": parseFloat(thyroidFormData.age),
+                        "on thyroxine": parseFloat(thyroidFormData.on_thyroxine),
+                        "query on thyroxine": parseFloat(thyroidFormData.query_on_thyroxine),
+                        "on antithyroid medication": parseFloat(thyroidFormData.on_antithyroid_medication),
+                        "pregnant": parseFloat(thyroidFormData.pregnant),
+                        "thyroid surgery": parseFloat(thyroidFormData.thyroid_surgery),
+                        "tumor": parseFloat(thyroidFormData.tumor),
+                        "T3": parseFloat(thyroidFormData.T3),
+                        "TT4": parseFloat(thyroidFormData.TT4),
+                        "T4U": parseFloat(thyroidFormData.T4U),
+                        "FTI": parseFloat(thyroidFormData.FTI)
+                    }),
+                })
+                const data = await response.json();
+                
+                console.log(data);
+
+                if (data.status === 'success') {
+
+                    setVisibility("font-bold text-[30px] flex");
+                    const probability = getValueBetweenZeroAndOne(data.probability);
+                    setprob(probability);
+
+                    setThyroidFormData({
+                        age: '',
+                        on_thyroxine: '',
+                        query_on_thyroxine: '',
+                        on_antithyroid_medication: '',
+                        pregnant: '',
+                        thyroid_surgery: '',
+                        tumor: '',
+                        T3: '',
+                        TT4: '',
+                        T4U: '',
+                        FTI: '',
+                    });
+                }
+                if (data.status === 'failed') {
+                    console.log("The status code :", data.status)
+                    console.log("diagnose failed");
+                }
+
+
+            } catch (err) {
+                console.error(`Error diagnosing the user`, err.message);
+
+            }
+        } else {
+            navigateToLogin();
+            toast.error("Please login to use all the functions!!")
+
+        }
+
+    }
+
+    const [pneumoniaImage, setPneumoniaImage] = useState('');
+    const handlePneumoniaInputChange = (e) => {
+        setPneumoniaImage(e.target.files[0]);
+        setVisibility("font-bold text-[30px] hidden");
+    }
+
+    const handlePneumoniaFormChange = async (e) => {
+        if (jwt) {
+            e.preventDefault();
+            try {
+                const formData = new FormData();
+                formData.append('image', pneumoniaImage);
+
+                const response = await fetch(' http://127.0.0.1:5000/diagnose_Pneumonia', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include',
+                });
+
+                const data = await response.json();
+                if (data.status === 'success') {
+                    setVisibility("font-bold text-[30px] flex");
+                    const probability = getValueBetweenZeroAndOne(data.probability);
+                    setprob(probability);
+                    setPneumoniaImage('');
+                } else if (data.status === 'failed') {
+                    console.log("The status code:", data.status);
+                    console.log("diagnose failed");
+                }
+
+            } catch (err) {
+                console.error(`Error diagnosing the user`, err.message);
+            }
+        } else {
+            navigateToLogin();
+            toast.error("Please login to use all the functions!!")
+
+        }
+
+    };
+
 
 	return (
 		<section className="py-[100px]">
