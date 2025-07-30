@@ -429,7 +429,168 @@ const DropdownForm = () => {
                     </div>
                 );
 
-            
+            case 'BreastCancer':
+                return (
+                    <div>
+                        <form >
+                            <div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='radius mean'
+                                        value={breastCancerFormData.radius_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'radius_mean')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='texture mean'
+                                        value={breastCancerFormData.texture_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'texture_mean')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='perimeter mean'
+                                        value={breastCancerFormData.perimeter_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'perimeter_mean')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='area mean'
+                                        value={breastCancerFormData.area_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'area_mean')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='smoothness mean'
+                                        value={breastCancerFormData.smoothness_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'smoothness_mean')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='compactness mean'
+                                        value={breastCancerFormData.compactness_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'compactness_mean')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='concavity mean'
+                                        value={breastCancerFormData.concavity_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'concavity_mean')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='concave points mean'
+                                        value={breastCancerFormData.concave_points_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'concave_points_mean')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='radius worst'
+                                        value={breastCancerFormData.radius_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'radius_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='texture worst'
+                                        value={breastCancerFormData.texture_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'texture_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='perimeter worst'
+                                        value={breastCancerFormData.perimeter_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'perimeter_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='area worst'
+                                        value={breastCancerFormData.area_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'area_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='smoothness worst'
+                                        value={breastCancerFormData.smoothness_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'smoothness_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='compactness worst'
+                                        value={breastCancerFormData.compactness_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'compactness_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='concavity worst'
+                                        value={breastCancerFormData.concavity_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'concavity_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='concave points worst'
+                                        value={breastCancerFormData.concave_points_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'concave_points_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='symmetry worst'
+                                        value={breastCancerFormData.symmetry_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'symmetry_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='fractal dimension worst'
+                                        value={breastCancerFormData.fractal_dimension_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'fractal_dimension_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+
+
+                            </div>
+                            <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleBreastCancerFormChange}>Diagnose Me</button>
+                        </form>
+                        <div>
+                            <h3 className={visibility}>
+                                The probability of you having Breast Cancer is  <span className={probColour}>{prob}</span>!!
+                            </h3>
+                        </div>
+                    </div>
+                );
+
             
 
             case 'Diabetes':
