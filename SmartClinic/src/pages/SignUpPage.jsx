@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const SignUpPage = () => {
+	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 	const navigate = useNavigate();
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -13,7 +15,7 @@ const SignUpPage = () => {
 	const handleSignUp = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await fetch(`http://localhost:5000/signup`, {
+			const response = await fetch(`${API_BASE}/signup`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

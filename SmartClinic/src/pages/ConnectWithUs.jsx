@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const ConnectWithUs = (props) => {
+	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 	const navigate = useNavigate();
 
 	const navigateTo = (address) => {
@@ -28,7 +30,7 @@ const ConnectWithUs = (props) => {
 			e.preventDefault();
 			try {
 				const response = await fetch(
-					`http://localhost:5000/sendMessage/${encryptedData}`,
+					`${API_BASE}/sendMessage/${encryptedData}`,
 					{
 						method: "POST",
 						headers: {

@@ -2,7 +2,10 @@ import { useState } from "react";
 import TypeWriter from "../Components/TypeWriter";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+
 const ForgotPassword = () => {
+	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 	const navigate = useNavigate();
 	const navigateToChangePassword = () => {
 		navigate("/changePass");
@@ -21,19 +24,16 @@ const ForgotPassword = () => {
 	const handleGetOtp = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await fetch(
-				`http://localhost:5000/forgotPassword`,
-				{
-					method: "POST",
-					credentials: "include",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						email: userEmail,
-					}),
-				}
-			);
+			const response = await fetch(`${API_BASE}/forgotPassword`, {
+				method: "POST",
+				credentials: "include",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email: userEmail,
+				}),
+			});
 			const data = await response.json();
 			if (data.status === "success") {
 				toast.success("OTP sent successfully!!");

@@ -3,11 +3,13 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 const AdminUser = () => {
+	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 	const [users, setUsers] = useState([]);
 
 	const fetchUsers = async () => {
 		try {
-			const res = await axios.get("http://localhost:5000/allusers");
+			const res = await axios.get(`${API_BASE}/allusers`);
 			setUsers(res.data.data.users);
 		} catch (err) {
 			console.error("Failed to fetch users:", err);

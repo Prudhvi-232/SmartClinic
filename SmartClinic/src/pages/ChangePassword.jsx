@@ -3,6 +3,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
+	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 	const encryptedData = sessionStorage.getItem("encryptedData");
 	const navigate = useNavigate();
 
@@ -20,19 +22,16 @@ const ChangePassword = () => {
 	const handleChangePassword = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await fetch(
-				`http://localhost:5000/${encryptedData}`,
-				{
-					method: "PATCH",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						password: password,
-						passwordConfirm: passwordConfirm,
-					}),
-				}
-			);
+			const response = await fetch(`${API_BASE}/${encryptedData}`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					password: password,
+					passwordConfirm: passwordConfirm,
+				}),
+			});
 
 			if (response.ok) {
 				navigateToLogin();

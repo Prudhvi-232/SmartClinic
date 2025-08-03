@@ -6,6 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const DropdownForm = () => {
+	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 	const jwt = sessionStorage.getItem("jwt");
 	const navigate = useNavigate();
 	const navigateToLogin = () => {
@@ -71,34 +73,29 @@ const DropdownForm = () => {
 		if (jwt) {
 			e.preventDefault();
 			try {
-				const response = await fetch(
-					` http://127.0.0.1:5000/diagnose_Diabetes`,
-					{
-						method: "POST",
-						credentials: "include",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({
-							Pregnancies: parseFloat(
-								diabetesFormData.pregnancies
-							),
-							Glucose: parseFloat(diabetesFormData.glucose),
-							BloodPressure: parseFloat(
-								diabetesFormData.bloodPressure
-							),
-							SkinThickness: parseFloat(
-								diabetesFormData.skinThickness
-							),
-							Insulin: parseFloat(diabetesFormData.insulin),
-							BMI: parseFloat(diabetesFormData.bmi),
-							DiabetesPedigreeFunction: parseFloat(
-								diabetesFormData.diabetesPedigreeFunction
-							),
-							Age: parseFloat(diabetesFormData.age),
-						}),
-					}
-				);
+				const response = await fetch(`${API_BASE}/diagnose_Diabetes`, {
+					method: "POST",
+					credentials: "include",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						Pregnancies: parseFloat(diabetesFormData.pregnancies),
+						Glucose: parseFloat(diabetesFormData.glucose),
+						BloodPressure: parseFloat(
+							diabetesFormData.bloodPressure
+						),
+						SkinThickness: parseFloat(
+							diabetesFormData.skinThickness
+						),
+						Insulin: parseFloat(diabetesFormData.insulin),
+						BMI: parseFloat(diabetesFormData.bmi),
+						DiabetesPedigreeFunction: parseFloat(
+							diabetesFormData.diabetesPedigreeFunction
+						),
+						Age: parseFloat(diabetesFormData.age),
+					}),
+				});
 				const data = await response.json();
 
 				if (data.status === "success") {
@@ -158,37 +155,34 @@ const DropdownForm = () => {
 		if (jwt) {
 			e.preventDefault();
 			try {
-				const response = await fetch(
-					` http://127.0.0.1:5000/diagnose_Thyroid`,
-					{
-						method: "POST",
-						credentials: "include",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({
-							age: parseFloat(thyroidFormData.age),
-							"on thyroxine": parseFloat(
-								thyroidFormData.on_thyroxine
-							),
-							"query on thyroxine": parseFloat(
-								thyroidFormData.query_on_thyroxine
-							),
-							"on antithyroid medication": parseFloat(
-								thyroidFormData.on_antithyroid_medication
-							),
-							pregnant: parseFloat(thyroidFormData.pregnant),
-							"thyroid surgery": parseFloat(
-								thyroidFormData.thyroid_surgery
-							),
-							tumor: parseFloat(thyroidFormData.tumor),
-							T3: parseFloat(thyroidFormData.T3),
-							TT4: parseFloat(thyroidFormData.TT4),
-							T4U: parseFloat(thyroidFormData.T4U),
-							FTI: parseFloat(thyroidFormData.FTI),
-						}),
-					}
-				);
+				const response = await fetch(`${API_BASE}/diagnose_Thyroid`, {
+					method: "POST",
+					credentials: "include",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						age: parseFloat(thyroidFormData.age),
+						"on thyroxine": parseFloat(
+							thyroidFormData.on_thyroxine
+						),
+						"query on thyroxine": parseFloat(
+							thyroidFormData.query_on_thyroxine
+						),
+						"on antithyroid medication": parseFloat(
+							thyroidFormData.on_antithyroid_medication
+						),
+						pregnant: parseFloat(thyroidFormData.pregnant),
+						"thyroid surgery": parseFloat(
+							thyroidFormData.thyroid_surgery
+						),
+						tumor: parseFloat(thyroidFormData.tumor),
+						T3: parseFloat(thyroidFormData.T3),
+						TT4: parseFloat(thyroidFormData.TT4),
+						T4U: parseFloat(thyroidFormData.T4U),
+						FTI: parseFloat(thyroidFormData.FTI),
+					}),
+				});
 				const data = await response.json();
 
 				console.log(data);
@@ -240,14 +234,11 @@ const DropdownForm = () => {
 				const formData = new FormData();
 				formData.append("image", pneumoniaImage);
 
-				const response = await fetch(
-					" http://127.0.0.1:5000/diagnose_Pneumonia",
-					{
-						method: "POST",
-						body: formData,
-						credentials: "include",
-					}
-				);
+				const response = await fetch(`${API_BASE}/diagnose_Pneumonia`, {
+					method: "POST",
+					body: formData,
+					credentials: "include",
+				});
 
 				const data = await response.json();
 				if (data.status === "success") {
@@ -283,13 +274,10 @@ const DropdownForm = () => {
 				const formData = new FormData();
 				formData.append("image", covidImage);
 
-				const response = await fetch(
-					" http://127.0.0.1:5000/diagnose_Covid",
-					{
-						method: "POST",
-						body: formData,
-					}
-				);
+				const response = await fetch(`${API_BASE}/diagnose_Covid`, {
+					method: "POST",
+					body: formData,
+				});
 
 				const data = await response.json();
 				console.log(data);
@@ -347,7 +335,7 @@ const DropdownForm = () => {
 			e.preventDefault();
 			try {
 				const response = await fetch(
-					` http://127.0.0.1:5000/diagnose_Breast_Cancer`,
+					`${API_BASE}/diagnose_Breast_Cancer`,
 					{
 						method: "POST",
 						credentials: "include",

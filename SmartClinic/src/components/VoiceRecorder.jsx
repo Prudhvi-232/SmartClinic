@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const VoiceRecorder = () => {
+	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 	const [isRecording, setIsRecording] = useState(false);
 	const mediaRecorderRef = useRef(null);
 	const [audioId, setAudioId] = useState(null);
@@ -40,7 +42,7 @@ const VoiceRecorder = () => {
 				formData.append("email", email);
 
 				axios
-					.post("http://localhost:5000/upload-audio", formData, {
+					.post(`${API_BASE}/upload-audio`, formData, {
 						headers: { Authorization: `Bearer ${token}` },
 					})
 					.then((res) => {
@@ -103,7 +105,7 @@ const VoiceRecorder = () => {
 			{audioId && (
 				<audio
 					controls
-					src={`http://localhost:5000/audio/${audioId}`}
+					src={`${API_BASE}/audio/${audioId}`}
 					className="mt-6"
 				/>
 			)}

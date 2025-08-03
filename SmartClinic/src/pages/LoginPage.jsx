@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
+	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -11,7 +13,7 @@ const LoginPage = () => {
 	const handleLogIn = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await fetch(`http://localhost:5000/login`, {
+			const response = await fetch(`${API_BASE}/login`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ email, password }),

@@ -3,12 +3,14 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 const AdminAudioFilter = () => {
+	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 	const [audios, setAudios] = useState([]);
 
 	useEffect(() => {
 		const fetchAudios = async () => {
 			try {
-				const res = await axios.get("http://localhost:5000/audios");
+				const res = await axios.get(`${API_BASE}/audios`);
 				if (Array.isArray(res.data)) {
 					const audiosWithPriority = res.data.map((audio) => {
 						let priority = 0;
@@ -81,7 +83,7 @@ const AdminAudioFilter = () => {
 							</tr>
 						) : (
 							audios.map((audio, index) => {
-								const audioUrl = `http://localhost:5000/audio/${audio.id}`;
+								const audioUrl = `${API_BASE}/audio/${audio.id}`;
 								return (
 									<motion.tr
 										key={audio.id}

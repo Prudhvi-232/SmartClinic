@@ -3,6 +3,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 const AdminAudio = () => {
+	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 	const [audios, setAudios] = useState([]);
 
 	useEffect(() => {
@@ -10,7 +12,7 @@ const AdminAudio = () => {
 			try {
 				console.log("Fetching audios...");
 				console.log("line 12...");
-				const res = await axios.get("http://localhost:5000/audios");
+				const res = await axios.get(`${API_BASE}/audios`);
 				console.log("Fetched audios line 4:", res.data);
 				if (Array.isArray(res.data)) {
 					setAudios(res.data);
@@ -87,7 +89,7 @@ const AdminAudio = () => {
 							</motion.tr>
 						) : (
 							audios.map((audio, index) => {
-								const audioUrl = `http://localhost:5000/audio/${audio.id}`;
+								const audioUrl = `${API_BASE}/audio/${audio.id}`;
 								return (
 									<motion.tr
 										key={audio.id}
