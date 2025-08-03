@@ -35,7 +35,7 @@ const ServicesPage = (props) => {
 		},
 	]);
 	return (
-		<section id="ServicesPage" ref={props.ServicesPageSection}>
+		<section id="ServicesPage" ref={props.Servicespagesection}>
 			<div className="my-[100px]">
 				<p className="flex justify-start text-[#09A4AD] font-bold text-[16px]">
 					DIAGNOSES & TREATMENTS

@@ -14,9 +14,9 @@ const Hero = (props) => {
 		<section className="w-full">
 			<Home HomeSection={props.HomeSection} />
 			<About AboutSection={props.AboutSection} />
-			<ServicesPage ServicesPageSection={props.ServicesPageSection} />
+			<ServicesPage Servicespagesection={props.Servicespagesection} />
 			<WhyChooseUs WhyChooseUsSection={props.WhyChooseUsSection} />
-			<CarousalPage CarousalPageSection={props.CarousalPageSection} />
+			<CarousalPage Carousalpagesection={props.Carousalpagesection} />
 			<ConnectWithUs
 				ConnectWithUsSection={props.ConnectWithUsSection}
 				MessageNameSection={MessageNameSection}
@@ -32,9 +32,9 @@ const Hero = (props) => {
 Hero.propTypes = {
 	HomeSection: PropTypes.object,
 	AboutSection: PropTypes.object,
-	ServicesPageSection: PropTypes.object,
+	Servicespagesection: PropTypes.object,
 	WhyChooseUsSection: PropTypes.object,
-	CarousalPageSection: PropTypes.object,
+	Carousalpagesection: PropTypes.object,
 	ConnectWithUsSection: PropTypes.object,
 };
 

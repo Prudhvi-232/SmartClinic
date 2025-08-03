@@ -35,7 +35,7 @@ const CarousalPage = (props) => {
 		<section
 			className="my-[100px]"
 			id="CarousalPage"
-			ref={props.CarousalPageSection}
+			ref={props.Carousalpagesection}
 		>
 			{/* <Swiper navigation={true} modules={[Navigation]} className="mySwiper"> */}
 			<div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-full justify-between">

@@ -1,28 +1,28 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Hero from "./Pages/Hero";
-import LoginPage from "./Pages/LoginPage";
-import SignUpPage from "./Pages/SignUpPage";
-import ChangePassword from "./Pages/ChangePassword";
+import Hero from "./pages/Hero";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import ChangePassword from "./pages/ChangePassword";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
 import { useRef } from "react";
-import PageNotFound from "./Pages/PageNotFound";
-import Doctors from "./Pages/Doctors";
-import DiagnosesPage from "./Pages/DiagnosesPage";
-import ForgotPassword from "./Pages/ForgotPassword";
+import PageNotFound from "./pages/PageNotFound";
+import Doctors from "./pages/Doctors";
+import DiagnosesPage from "./pages/DiagnosesPage";
+import ForgotPassword from "./pages/ForgotPassword";
 import VoiceRecorder from "./components/VoiceRecorder";
-import Admin from "./Pages/Admin";
-import AdminUser from "./Pages/AdminUser";
-import AdminAudio from "./Pages/AdminAudio";
-import AdminAudioFilter from "./Pages/AdminAudioFilter";
+import Admin from "./pages/Admin";
+import AdminUser from "./pages/AdminUser";
+import AdminAudio from "./pages/AdminAudio";
+import AdminAudioFilter from "./pages/AdminAudioFilter";
 function App() {
 	const HomeSection = useRef(null);
 	const AboutSection = useRef(null);
-	const ServicesPageSection = useRef(null);
+	const Servicespagesection = useRef(null);
 	const WhyChooseUsSection = useRef(null);
-	const CarousalPageSection = useRef(null);
+	const Carousalpagesection = useRef(null);
 	const ConnectWithUsSection = useRef(null);
 	const FooterSection = useRef(null);
 	const jwt = sessionStorage.getItem("jwt");
@@ -33,9 +33,9 @@ function App() {
 				message={"login successful"}
 				AboutSection={AboutSection}
 				HomeSection={HomeSection}
-				ServicesPageSection={ServicesPageSection}
+				Servicespagesection={Servicespagesection}
 				WhyChooseUsSection={WhyChooseUsSection}
-				CarousalPageSection={CarousalPageSection}
+				Carousalpagesection={Carousalpagesection}
 				ConnectWithUsSection={ConnectWithUsSection}
 				FooterSection={FooterSection}
 			/>
@@ -59,9 +59,9 @@ function App() {
 						<Hero
 							AboutSection={AboutSection}
 							HomeSection={HomeSection}
-							ServicesPageSection={ServicesPageSection}
+							Servicespagesection={Servicespagesection}
 							WhyChooseUsSection={WhyChooseUsSection}
-							CarousalPageSection={CarousalPageSection}
+							Carousalpagesection={Carousalpagesection}
 							ConnectWithUsSection={ConnectWithUsSection}
 							FooterSection={FooterSection}
 						/>
