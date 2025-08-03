@@ -28,7 +28,7 @@ const ConnectWithUs = (props) => {
 			e.preventDefault();
 			try {
 				const response = await fetch(
-					`http://localhost:3000/sendMessage/${encryptedData}`,
+					`http://localhost:5000/sendMessage/${encryptedData}`,
 					{
 						method: "POST",
 						headers: {
