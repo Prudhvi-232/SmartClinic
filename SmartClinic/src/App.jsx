@@ -1,5 +1,5 @@
 import "./App.css";
-import Navbar from "./Components/Navbar";
+import Navbar from "./components/Navbar";
 import Hero from "./Pages/Hero";
 import LoginPage from "./Pages/LoginPage";
 import SignUpPage from "./Pages/SignUpPage";
@@ -12,7 +12,7 @@ import PageNotFound from "./Pages/PageNotFound";
 import Doctors from "./Pages/Doctors";
 import DiagnosesPage from "./Pages/DiagnosesPage";
 import ForgotPassword from "./Pages/ForgotPassword";
-import VoiceRecorder from "./Components/VoiceRecorder";
+import VoiceRecorder from "./components/VoiceRecorder";
 import Admin from "./Pages/Admin";
 import AdminUser from "./Pages/AdminUser";
 import AdminAudio from "./Pages/AdminAudio";

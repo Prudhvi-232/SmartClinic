@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DiagnosesHeading from "../Components/DiagnosesHeading";
+import DiagnosesHeading from "../components/DiagnosesHeading";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";

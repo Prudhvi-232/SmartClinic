@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useState } from "react";
-import CarousalCard from "../Components/CarousalCard";
+import CarousalCard from "../components/CarousalCard";
 import "swiper/css";
 import "swiper/css/navigation";
 

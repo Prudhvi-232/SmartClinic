@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DoctorCard from "../Components/DoctorCard";
+import DoctorCard from "../components/DoctorCard";
 import "../styles/infiniteScroll.css";
 
 const Doctors = () => {

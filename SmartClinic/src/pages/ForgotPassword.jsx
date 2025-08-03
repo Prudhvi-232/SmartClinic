@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TypeWriter from "../Components/TypeWriter";
+import TypeWriter from "../components/TypeWriter";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
