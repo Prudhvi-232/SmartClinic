@@ -1,0 +1,55 @@
+/* Infinite Scroll Animation for Doctors */
+@keyframes infiniteScroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+.infinite-scroll-container {
+	overflow: hidden;
+	white-space: nowrap;
+	position: relative;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(255, 255, 255, 1) 5%,
+		rgba(255, 255, 255, 1) 95%,
+		rgba(255, 255, 255, 0) 100%
+	);
+	padding: 20px 0;
+}
+
+.infinite-scroll-track {
+	display: inline-flex;
+	animation: infiniteScroll 120s linear infinite;
+	gap: 20px;
+	will-change: transform;
+}
+
+.infinite-scroll-track:hover {
+	animation-play-state: paused;
+}
+
+.infinite-scroll-item {
+	flex: 0 0 auto;
+	display: inline-block;
+	white-space: normal;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.infinite-scroll-track {
+		animation-duration: 90s;
+		gap: 15px;
+	}
+}
+
+@media (max-width: 480px) {
+	.infinite-scroll-track {
+		animation-duration: 60s;
+		gap: 10px;
+	}
+}

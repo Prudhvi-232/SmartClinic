@@ -12,6 +12,11 @@ import PageNotFound from './Pages/PageNotFound';
 import Doctors from './Pages/Doctors';
 import DiagnosesPage from './Pages/DiagnosesPage';
 import ForgotPassword from './Pages/ForgotPassword';
+import VoiceRecorder from './components/VoiceRecorder';
+import Admin from './pages/Admin';
+import AdminUser from './pages/AdminUser'
+import AdminAudio from './pages/AdminAudio'
+import AdminAudioFilter from './pages/AdminAudioFilter'
 function App() {
   const HomeSection = useRef(null);
   const AboutSection = useRef(null);
@@ -65,7 +70,15 @@ function App() {
         {!jwt && <Route path='/login' element={<LoginPage />} />}
         {!jwt && <Route path='/signup' element={<SignUpPage />} />}
         {encryptedData && <Route path='/changePass' element={<ChangePassword />} />}
+
+        <Route path='*' element={<PageNotFound />} />
+        <Route path="/admin-dashboard" element= {<Admin/>}/>
+        <Route path="/admin-users"  element={<AdminUser/>} />
+        <Route path="/admin-audio" element={<AdminAudio/>} />
+        <Route path="/admin-audio-filter" element={<AdminAudioFilter/>}/>
       </Routes>
+
+      <VoiceRecorder />
 
     </div>
   )

@@ -17,3 +17,4 @@ npm install prop-types
 npm install swiper
 npm install react-router-dom
 npm install react-toastify
+npm install axios
