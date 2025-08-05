@@ -67,34 +67,33 @@ const ForgotPassword = () => {
 		}
 	};
 	return (
-		<section>
-			<div className="mx-[auto] shadow-lg  px-[50px] my-[100px] rounded-lg w-[800px] ">
-				<div className="mt-[50px] mb-[10px]">
-					<h1 className="text-[40px] font-bold ">Forgot Password?</h1>
-					<div className="inline-block mx-[auto]">
-						<p className="text-[25px] font-bold text-[#18A0A9] text-start">
-							{" "}
-							<TypeWriter
-								array={["Reset", "Reclaim", "Relog"]}
-							/>{" "}
-						</p>
-						<p className="text-[16px] font-bold  text-start">
-							Your Journey Back In with our Forgot Password
-							Assistance!
-						</p>
-					</div>
+		<section className="flex items-center justify-center pt-[13vh]  ">
+			<div className="mx-auto shadow-2xl px-8 py-12 rounded-2xl w-full max-w-lg bg-white">
+				<div className="mb-8 text-center">
+					<h1 className="text-4xl font-extrabold text-[#18A0A9] mb-2">Forgot Password?</h1>
+					<p className="text-xl font-semibold text-gray-700 mb-1">
+						<TypeWriter array={["Reset", "Reclaim", "Relog"]} />
+					</p>
+					<p className="text-base text-gray-500">
+						Your Journey Back In with our Forgot Password Assistance!
+					</p>
 				</div>
 
 				<div className={emailVisibility}>
+					<label className="block text-left text-gray-700 font-medium mb-2" htmlFor="email">
+						Email Address
+					</label>
 					<input
-						type="text"
-						placeholder="email"
-						className="w-[400px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+						id="email"
+						type="email"
+						placeholder="Enter your email"
+						className="w-full mb-4 h-12 rounded-lg border border-[#18A0A9] px-4 focus:outline-none focus:ring-2 focus:ring-[#18A0A9] transition"
 						value={userEmail}
 						onChange={handleUserEmailChange}
+						autoComplete="email"
 					/>
 					<button
-						className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-lg my-[10px] block"
+						className="w-full h-12 bg-[#18A0A9] hover:bg-[#139098] text-white font-bold rounded-lg transition mb-2"
 						type="submit"
 						onClick={handleGetOtp}
 					>
@@ -103,21 +102,27 @@ const ForgotPassword = () => {
 				</div>
 
 				<div className={otpVisibility}>
+					<label className="block text-left text-gray-700 font-medium mb-2" htmlFor="otp">
+						Enter OTP
+					</label>
 					<input
+						id="otp"
 						type="text"
-						placeholder="otp"
-						className="w-[400px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+						placeholder="Enter OTP"
+						className="w-full mb-4 h-12 rounded-lg border border-[#18A0A9] px-4 focus:outline-none focus:ring-2 focus:ring-[#18A0A9] transition"
 						onChange={handleUserOtpChange}
 						value={userOtp}
+						autoComplete="one-time-code"
 					/>
 					<button
-						className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-lg my-[10px] block"
+						className="w-full h-12 bg-[#18A0A9] hover:bg-[#139098] text-white font-bold rounded-lg transition"
 						type="submit"
 						onClick={handleVerifyOtp}
 					>
 						Verify OTP
 					</button>
 				</div>
+				<ToastContainer position="top-center" />
 			</div>
 		</section>
 	);

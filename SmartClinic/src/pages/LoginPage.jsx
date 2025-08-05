@@ -56,7 +56,8 @@ const LoginPage = () => {
 	};
 
 	return (
-		<section className="flex justify-between my-[100px] py-[100px]">
+		
+		<section className="flex justify-between items-center w-[100%] h-[80vh] ">
 			<div>
 				<img
 					src="assets/undraw_medicine_b-1-ol.svg"
@@ -65,11 +66,11 @@ const LoginPage = () => {
 				/>
 			</div>
 
-			<div className="w-[475px] shadow-lg px-[35px] py-[20px] rounded-lg">
+			<div className="w-[475px] shadow-lg px-[35px] ml-[15vw] py-[20px] rounded-lg">
 				<h1 className="text-[40px] font-bold mb-[30px]">
 					Welcome Back
 				</h1>
-
+		
 				<input
 					type="email"
 					placeholder="Email"

@@ -56,7 +56,7 @@ const SignUpPage = () => {
 
 	return (
 		<>
-			<section className="flex justify-between my-[100px] py-[50px]">
+			<section className="flex justify-between items-center w-[100%]  pt-[50px]">
 				<div>
 					<img
 						src="assets/health-flatline-3a65b.svg"
