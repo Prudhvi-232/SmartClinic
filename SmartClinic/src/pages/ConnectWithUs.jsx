@@ -65,49 +65,94 @@ const ConnectWithUs = (props) => {
 	};
 	return (
 		<section
-			className="py-[100px]"
+			className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white"
 			id="ConnectWithUs"
 			ref={props.ConnectWithUsSection}
 		>
-			<div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 flex text-start justify-between">
-				<div className="sm:w-[464px]">
-					<p className="font-bold text-xl sm:text-[12px]  text-[#09A4AD]">
-						Connect With Us
-					</p>
-					<h1 className="text-[30px] leading-[30px] sm:leading-[40px] text-[#000] font-bold flex text-start mt-[20px] sm:text-[40px] mb-[40px]">
-						Connect with SmartClinic, Take a step towards prevention
-					</h1>
-					<p className="font-medium text-[20px]">
-						Far far away, behind the word mountains, far from the
-						countries Waganda and Asgard.
-					</p>
-				</div>
-				<div className="w-full sm:w-[475px] h-[auto] shadow-lg px-[35px] py-[20px] rounded-lg mt-[30px]">
-					<input
-						type="text"
-						placeholder="Name"
-						value={name}
-						ref={props.MessageNameSection}
-						onChange={handleNameChange}
-						className="w-full sm:w-[400px] sm:h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
-					/>
+			<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+					{/* Content Section */}
+					<div className="space-y-8 text-center lg:text-left">
+						<div>
+							<div className="inline-block px-4 py-2 bg-[#00A0AA]/10 rounded-full mb-6">
+								<span className="text-[#00A0AA] font-semibold text-sm uppercase tracking-wide">
+									Connect With Us
+								</span>
+							</div>
+							<h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+								Take a Step Towards{" "}
+								<span className="text-[#00A0AA]">Prevention</span>
+							</h2>
+							<p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
+								Have questions or need assistance? Our team is here to help. 
+								Reach out to us, and we'll get back to you as soon as possible.
+							</p>
+						</div>
+						<div className="flex justify-center lg:justify-start">
+							<img 
+								src="/assets/undraw_faq_re_31cw.svg" 
+								alt="Connect with us illustration"
+								className="w-full max-w-md h-auto object-contain"
+							/>
+						</div>
+					</div>
 
-					<input
-						type="text"
-						placeholder="Message"
-						value={message}
-						onChange={handleMessageChange}
-						className="w-full  sm:w-[400px] h-[150px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
-					/>
-					<button
-						onClick={handleSendMessage}
-						className="w-full sm:w-[400px] h-[50px] bg-[#18A0A9] text-[#FFFFFF] rounded-xl my-[10px] "
-					>
-						Submit Now
-					</button>
+					{/* Form Section */}
+					<div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+						<form onSubmit={handleSendMessage} className="space-y-6">
+							<div>
+								<label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+									Full Name
+								</label>
+								<input
+									type="text"
+									id="name"
+									placeholder="Your Name"
+									value={name}
+									ref={props.MessageNameSection}
+									onChange={handleNameChange}
+									className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00A0AA] transition-all duration-300"
+									required
+								/>
+							</div>
+							
+							<div>
+								<label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+									Message
+								</label>
+								<textarea
+									id="message"
+									placeholder="Your Message"
+									value={message}
+									onChange={handleMessageChange}
+									rows="5"
+									className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00A0AA] transition-all duration-300"
+									required
+								></textarea>
+							</div>
+
+							<div>
+								<button
+									type="submit"
+									className="w-full group bg-[#00A0AA] hover:bg-[#008A94] text-white font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[#00A0AA]/30"
+								>
+									<span className="flex items-center justify-center gap-2">
+										Submit Now
+										<svg 
+											className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" 
+											fill="none" 
+											stroke="currentColor" 
+											viewBox="0 0 24 24"
+										>
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+										</svg>
+									</span>
+								</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
-
 			<ToastContainer />
 		</section>
 	);
