@@ -12,21 +12,29 @@ const CarousalCard = (props) => {
     const [stars, setStars] = useState([]);
 
     return (
-        <div className='my-[25px]'>
-            <div className='text-start sm:w-[490px]'>
-                <div className='flex '>
-                    <img src="assets/Ellipse 10.svg" alt="" />
-                    <img src="assets/Vector(16).svg" alt="" className='translate-x-[-150%]' />
+        <div className='bg-white rounded-lg shadow-sm p-6 border border-gray-100'>
+            {/* Stars Rating */}
+            <div className='flex items-center mb-4'>
+                {stars}
+            </div>
+
+            {/* Testimonial */}
+            <blockquote className='text-gray-700 text-lg leading-relaxed mb-4'>
+                {props.comment}
+            </blockquote>
+
+            {/* Profile Section */}
+            <div className='flex items-center'>
+                <img 
+                    src="assets/Ellipse 10.svg" 
+                    alt="User profile" 
+                    className='w-10 h-10 rounded-full object-cover'
+                />
+                <div className='ml-3'>
+                    <h4 className='font-semibold text-gray-900'>
+                        {props.name}
+                    </h4>
                 </div>
-                <div className='my-[15px] flex'>
-                    {stars}
-                </div>
-                <h1 className='font-bold text-[32px] mb-[15px]'>
-                    {props.comment}
-                </h1>
-                <p className='font-medium text-[20px]'>
-                    {props.name}
-                </p>
             </div>
         </div>
     );
