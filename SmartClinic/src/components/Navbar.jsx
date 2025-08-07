@@ -39,7 +39,7 @@ const Navbar = (props) => {
 							alt=""
 							className=""
 						/>
-						<div className="font-bold text-xl">SmartClinic</div>
+						<div className="font-bold text-xl ml-3">SmartClinic</div>
 					</a>
 					<button
 						onClick={toggleMenu}
