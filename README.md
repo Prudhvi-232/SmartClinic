@@ -54,13 +54,13 @@ SmartClinic offers comprehensive medical diagnostic capabilities with these key 
 -   *OpenCV* - Image processing
 -   *TensorFlow* - Deep learning model inference
 
-## 📁 Project Structure
+## 📂 Project Structure
 
-
+```
 SmartClinic/
-├── SmartClinic/                 # Frontend React Application
+├── SmartClinic/                # Frontend React Application
 │   ├── src/
-│   │   ├── components/          # Reusable UI components
+│   │   ├── components/         # Reusable UI components
 │   │   ├── pages/              # Page components
 │   │   ├── styles/             # CSS and styling
 │   │   └── utils/              # Utility functions
@@ -69,17 +69,20 @@ SmartClinic/
 │   ├── package.json
 │   └── vite.config.js
 │
-└── server/                      # Backend Services
-    ├── Controllers/             # API route handlers
-    ├── Models/                  # Database models
-    ├── Routes/                  # API routes
-    ├── Ml Models/              # Pre-trained ML models
-    ├── uploads/                # File storage
-    ├── utils/                  # Backend utilities
-    ├── app.js                  # Express app configuration
-    ├── server.js               # Main server file
-    ├── app.py                  # Flask ML server
-    └── package.json
+├── server/                     # Backend Services
+│   ├── Controllers/            # API route handlers
+│   ├── Models/                 # Database models
+│   ├── Routes/                 # API routes
+│   ├── Ml Models/              # Pre-trained ML models
+│   ├── uploads/                # File storage
+│   ├── utils/                  # Backend utilities
+│   ├── app.js                  # Express app configuration
+│   ├── server.js               # Main server file
+│   └── app.py                  # Flask ML server
+│
+└── package.json
+```
+
 
 
 ## 🚀 Getting Started
