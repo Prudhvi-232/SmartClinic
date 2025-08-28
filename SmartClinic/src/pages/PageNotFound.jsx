@@ -1,29 +1,39 @@
 import { useNavigate } from "react-router-dom";
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 const PageNotFound = () => {
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
-    const navigateTo = (address) => {
-        navigate(address);
-    };
-    const toHome = () => {
-        toast.success("Welcome back!!")
-        navigateTo('/');
-    }
-    return (
-        <section>
-            <div className="absolute" id="NotFound" >
-                <div className="flex justify-around translate-y-[100px]">
-                    <h1 className="font-bold text-[40px] text-[#18A0A9] text-[Indie Flower] " >I think you lost your way</h1>
-                    <button onClick={toHome} className="w-auto h-[50px] bg-[#18A0A9] text-[#FFFFFF] font-bold p-[10px] rounded-xl my-[10px] z-30 "> Return to home</button>
-                </div>
+	const toHome = () => {
+		toast.success("Welcome back!!");
+		navigate("/");
+	};
 
-                <img src='assets/PageNotFound.png' alt="" className="z-[-1] mx-auto mt-6 scale-[80%]" />
-
-            </div>
-        </section>
-    );
-}
+	return (
+		<section className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-center px-4 py-12">
+			<div className="max-w-md w-full">
+				<img
+					src="assets/undraw_page_not_found_re_e9o6.svg"
+					alt="Page Not Found"
+					className="w-full max-w-xs mx-auto mb-8"
+				/>
+				<h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+					Oops! Page Not Found
+				</h1>
+				<p className="text-lg text-gray-600 mb-8">
+					It seems like you've taken a wrong turn. The page you are looking for
+					does not exist.
+				</p>
+				<button
+					onClick={toHome}
+					className="bg-[#00A0AA] hover:bg-[#008A94] text-white font-semibold px-8 py-3 rounded-lg text-lg transform hover:scale-105 "
+				>
+					Return to Home
+				</button>
+			</div>
+			<ToastContainer />
+		</section>
+	);
+};
 
 export default PageNotFound;

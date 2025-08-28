@@ -41,7 +41,7 @@ const LoginPage = () => {
 					} else {
 						navigate("/");
 					}
-				}, 1000);
+				}, 500);
 			} else {
 				toast.error(data.message || "Login failed");
 			}

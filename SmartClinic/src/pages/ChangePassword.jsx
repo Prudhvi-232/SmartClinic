@@ -3,12 +3,17 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
-	const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
-
+	const API_BASE = import.meta.env.VITE_API_URL;
+	
 	const encryptedData = sessionStorage.getItem("encryptedData");
 	const navigate = useNavigate();
-
-	const navigateToLogin = () => {
+	
+	const toHome = () => {
+		toast.success("Welcome back!!");
+		navigate("/");
+	};
+	const toLogin = () => {
+		toast.success("Password changed, Login again");
 		navigate("/login");
 	};
 	const [password, setPassword] = useState("");
@@ -21,7 +26,14 @@ const ChangePassword = () => {
 	};
 	const handleChangePassword = async (e) => {
 		e.preventDefault();
+		if (password !== passwordConfirm) {
+			toast.error("Passwords do not match!");
+			// return;
+		}
+		// This is to prevent unnecessary API calls
 		try {
+			// PATCH method is standard HTTP method for making partial updates to a resource. we r only updating the user's password, not the entire user object.
+	
 			const response = await fetch(`${API_BASE}/${encryptedData}`, {
 				method: "PATCH",
 				headers: {
@@ -34,9 +46,9 @@ const ChangePassword = () => {
 			});
 
 			if (response.ok) {
-				navigateToLogin();
+				toLogin();
 				toast.success(
-					"password successfully changed!!\n Now login to continue!!"
+					"password successfully changed!!\n login to continue!!"
 				);
 				sessionStorage.clear("encryptedData");
 				sessionStorage.clear("jwt");
@@ -57,19 +69,20 @@ const ChangePassword = () => {
 		setPassword("");
 		setPasswordConfirm("");
 	};
+	
 	return (
-		<section className="flex justify-between my-[100px] py-[100px]">
-			<div>
+		<section className="flex flex-col lg:flex-row items-center justify-center min-h-screen bg-gray-50 py-12 px-4">
+			<div className="lg:w-1/2 flex justify-center mb-8 lg:mb-0">
 				<img
 					src="assets/authentication-two-color-b35f8.svg"
-					className="h-[400px] "
-					alt=""
+					className="h-80 lg:h-[400px] object-contain"
+					alt="Authentication Photo"
 				/>
 			</div>
 
-			<div className=" w-[475px] shadow-lg px-[35px] py-[20px] rounded-lg flex flex-col">
-				<h1 className="text-[40px] font-bold mb-[30px]">
-					Change password
+			<div className="w-full max-w-md shadow-lg px-8 py-6 rounded-lg bg-white">
+				<h1 className="text-2xl lg:text-3xl font-bold mb-6 text-center text-gray-800">
+					Change Password
 				</h1>
 
 				<input
@@ -77,7 +90,7 @@ const ChangePassword = () => {
 					placeholder="New Password"
 					value={password}
 					onChange={handlePasswordChange}
-					className="w-[400px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+					className="w-full h-12 rounded-lg mb-4 border border-gray-300 px-4 focus:outline-none focus:ring-2 focus:ring-[#18A0A9]"
 				/>
 
 				<input
@@ -85,22 +98,26 @@ const ChangePassword = () => {
 					placeholder="Confirm New Password"
 					value={passwordConfirm}
 					onChange={handlePasswordConfirmChange}
-					className="w-[400px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+					className="w-full h-12 rounded-lg mb-4 border border-gray-300 px-4 focus:outline-none focus:ring-2 focus:ring-[#18A0A9]"
 				/>
 
 				<button
-					className="w-[400px] h-[50px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px] "
 					onClick={handleChangePassword}
+					className="w-full h-12 bg-[#18A0A9] text-white font-medium rounded-lg hover:bg-[#139098]"
 				>
 					Change Password
 				</button>
-				<div className="mt-[10px]">
-					Don't want to change password?{" "}
-					<a href="#" className="text-[#3b82f6] hover:underline">
-						Go to Home
-					</a>
+
+				<div className="mt-4 text-center">
+					<p className="text-sm text-gray-600">
+						Don't want to change the password?{' '}
+						<a onClick={toHome} className="text-[#3b82f6] cursor-pointer">
+							Go to Home
+						</a>
+					</p>
 				</div>
 			</div>
+			<ToastContainer position="top-right" autoClose={2000} />
 		</section>
 	);
 };
