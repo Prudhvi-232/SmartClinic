@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { useState, useCallback } from "react";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const DoctorCard = (props) => {
@@ -10,6 +10,8 @@ const DoctorCard = (props) => {
 	}, [navigate]);
 	const jwt = sessionStorage.getItem("jwt");
 	const [direction, setDirection] = useState(false);
+	const [imgError, setImgError] = useState(false);
+	const [imgLoaded, setImgLoaded] = useState(false);
 
 	const handleGoToHospital = useCallback(() => {
 		if (jwt) {
@@ -21,17 +23,30 @@ const DoctorCard = (props) => {
 		}
 	}, [jwt, navigateToLogin]);
 
-	useEffect(() => {
-		handleGoToHospital();
-	}, [handleGoToHospital]);
-
 	return (
 		<div className="mb-[30px] w-[408px] mx-auto">
 			<div className="relative w-[408px] h-[240px] overflow-hidden rounded-t-lg shadow-lg">
+				{!imgLoaded && (
+					<div className="absolute inset-0 animate-pulse bg-gray-200 flex items-center justify-center text-xs text-gray-500">
+						Loading image...
+					</div>
+				)}
 				<img
-					src={props.imageSrc}
-					alt="hospital image"
-					className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+					src={
+						imgError
+							? "/assets/hospital_placeholder.svg"
+							: props.imageSrc
+					}
+					alt="Hospital"
+					onLoad={() => setImgLoaded(true)}
+					onError={() => {
+						setImgError(true);
+						setImgLoaded(true);
+					}}
+					className={`w-full h-full object-cover transition-transform duration-300 ${
+						imgLoaded ? "hover:scale-105" : ""
+					}`}
+					loading="lazy"
 				/>
 			</div>
 			<div className="w-[408px]">

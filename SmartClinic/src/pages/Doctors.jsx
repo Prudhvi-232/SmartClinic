@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import DoctorCard from "../components/DoctorCard";
 import "../styles/infiniteScroll.css";
 
@@ -213,18 +213,167 @@ const Doctors = () => {
 		},
 	]);
 
+	// Base fallback list (first few predefined hospitals captured once)
+	const BASE_HOSPITALS = doctors.slice(0, 6);
+
+	// Location + reverse geocode
+	const [placeName, setPlaceName] = useState("Detecting location...");
+	const [geoStatus, setGeoStatus] = useState("pending"); // pending | success | fallback | error
+
+	useEffect(() => {
+		let cancelled = false;
+		const stored = sessionStorage.getItem("userLocation");
+		const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY; // optional
+
+		async function reverseGeocode(lat, lng) {
+			if (!apiKey) {
+				setGeoStatus("fallback");
+				setPlaceName("Lucknow");
+				return;
+			}
+			try {
+				const resp = await fetch(
+					`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
+				);
+				const data = await resp.json();
+				if (cancelled) return;
+				if (data.status === "OK" && data.results?.length) {
+					// Try to extract a useful locality / sublocality / village / town name
+					const components = data.results[0].address_components;
+					const wantedTypes = [
+						"locality",
+						"sublocality",
+						"administrative_area_level_3",
+						"administrative_area_level_2",
+						"postal_town",
+						"neighborhood",
+						"political",
+					];
+					let name = components.find((c) =>
+						c.types.some((t) => wantedTypes.includes(t))
+					)?.long_name;
+					if (!name) name = "Lucknow"; // fallback if parsing failed
+					setPlaceName(name);
+					setGeoStatus(name === "Lucknow" ? "fallback" : "success");
+				} else {
+					setGeoStatus("fallback");
+					setPlaceName("Lucknow");
+				}
+			} catch {
+				if (!cancelled) {
+					setGeoStatus("fallback");
+					setPlaceName("Lucknow");
+				}
+			}
+		}
+
+		if (stored) {
+			try {
+				const { lat, lng } = JSON.parse(stored);
+				reverseGeocode(lat, lng);
+			} catch {
+				setPlaceName("Lucknow");
+				setGeoStatus("fallback");
+			}
+		} else {
+			// If user never granted location we fallback
+			setPlaceName("Lucknow");
+			setGeoStatus("fallback");
+		}
+
+		return () => {
+			cancelled = true;
+		};
+	}, []);
+
+	// Fetch dynamic nearby hospitals from backend (Google Places) if coordinates stored
+	useEffect(() => {
+		const stored = sessionStorage.getItem("userLocation");
+		if (!stored) return; // user denied or not yet provided
+		let aborted = false;
+		(async () => {
+			try {
+				const { lat, lng } = JSON.parse(stored);
+				const base = (
+					import.meta.env.VITE_BACKEND_URL ||
+					import.meta.env.VITE_API_URL ||
+					"http://localhost:5000"
+				).replace(/\/$/, "");
+				const resp = await fetch(
+					`${base}/nearby-hospitals?lat=${lat}&lng=${lng}`
+				);
+				if (!resp.ok) throw new Error("Network response not ok");
+				const data = await resp.json();
+				if (aborted) return;
+				if (
+					data.status === "success" &&
+					Array.isArray(data.hospitals) &&
+					data.hospitals.length
+				) {
+					_setDoctors(() =>
+						data.hospitals.map((h) => ({
+							name: h.name,
+							rating: h.rating ? String(h.rating) : "N/A",
+							fullAddress: h.address || h.vicinity || "Nearby",
+							imageSrc:
+								h.photoUrl ||
+								"/assets/hospital_placeholder.svg",
+							website: h.website || "None",
+							directions: h.location
+								? `https://www.google.com/maps/search/?api=1&query=${h.location.lat},${h.location.lng}`
+								: "#",
+							phoneNumber: h.phone || "Not Available",
+						}))
+					);
+				} else {
+					_setDoctors((prev) => prev.slice(0, 6));
+				}
+			} catch (e) {
+				console.error("Failed to load nearby hospitals:", e);
+				_setDoctors((prev) => prev.slice(0, 6));
+			}
+		})();
+		return () => {
+			aborted = true;
+		};
+	}, []);
+
+	// Filter hospitals by detected place (basic contains match). If none matches, show all.
+	const visibleDoctors = useMemo(() => {
+		if (!placeName || placeName === "Detecting location...") return doctors;
+		const lower = placeName.toLowerCase();
+		const subset = doctors.filter((d) =>
+			(d.fullAddress || "").toLowerCase().includes(lower)
+		);
+		return subset.length ? subset : doctors;
+	}, [doctors, placeName]);
+
 	return (
 		<section className="my-[100px]">
 			<div className="max-w-full mx-auto">
-				<h1 className="text-4xl font-bold text-center mb-12 text-gray-800">
-					Find the Best Hospitals Near You
+				<h1 className="text-4xl font-bold text-center mb-4 text-gray-800">
+					Hospitals near{" "}
+					{placeName === "Detecting location..." ? (
+						<span className="italic text-lg">Detecting...</span>
+					) : (
+						<span className="text-[#18A0A9]">{placeName}</span>
+					)}
 				</h1>
+				<p className="text-center mb-12 text-sm text-gray-500">
+					{geoStatus === "fallback" && placeName === "Lucknow"
+						? "No location detected. Showing all hospitals."
+						: geoStatus === "success"
+						? "Location detected successfully. Showing nearby hospitals."
+						: geoStatus === "pending"
+						? "Attempting to detect your location..."
+						: "Displaying hospitals."}
+				</p>
 
 				{/* Infinite Scrolling Hospitals */}
 				<div className="infinite-scroll-container mb-16">
 					<div className="infinite-scroll-track">
 						{/* First set of cards */}
-						{doctors.map((details, index) => (
+						{visibleDoctors.map((details, index) => (
 							<div
 								key={`first-${index}`}
 								className="infinite-scroll-item"
@@ -240,7 +389,7 @@ const Doctors = () => {
 							</div>
 						))}
 						{/* Duplicate set for seamless infinite loop */}
-						{doctors.map((details, index) => (
+						{visibleDoctors.map((details, index) => (
 							<div
 								key={`second-${index}`}
 								className="infinite-scroll-item"
@@ -274,7 +423,7 @@ const Doctors = () => {
 							</p>
 						</div>
 						<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 justify-items-center">
-							{doctors.map((details, index) => (
+							{visibleDoctors.map((details, index) => (
 								<div
 									key={`static-${index}`}
 									className="w-full max-w-[420px]"

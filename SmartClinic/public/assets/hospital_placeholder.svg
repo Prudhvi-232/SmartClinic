@@ -1,0 +1,11 @@
+<svg width="408" height="240" viewBox="0 0 408 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="408" height="240" rx="12" fill="#E6F7F8"/>
+  <g stroke="#18A0A9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <rect x="124" y="60" width="160" height="120" rx="8"/>
+    <path d="M124 96h160"/>
+    <path d="M204 60v160" opacity="0.2"/>
+    <rect x="172" y="112" width="32" height="32" rx="4"/>
+    <path d="M188 120v16M180 128h16"/>
+  </g>
+  <text x="204" y="214" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#18A0A9">Image not available</text>
+</svg>
