@@ -34,8 +34,8 @@ const LoginPage = () => {
 
 				setTimeout(() => {
 					if (
-						email.toLowerCase() === "kbr1@gmail.com" ||
-						email.toLowerCase() === "lk5@gmail.com"
+						email.toLowerCase() === "prudhvitaduvai@gmail.com" ||
+						email.toLowerCase() === "siddharth2304p@gmail.com"
 					) {
 						navigate("/admin-dashboard");
 					} else {

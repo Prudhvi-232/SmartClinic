@@ -215,6 +215,7 @@ const Doctors = () => {
 
 	// Base fallback list (first few predefined hospitals captured once)
 	const BASE_HOSPITALS = doctors.slice(0, 6);
+	// console.log(lat);
 
 	// Location + reverse geocode
 	const [placeName, setPlaceName] = useState("Detecting location...");

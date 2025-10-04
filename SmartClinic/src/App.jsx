@@ -39,13 +39,15 @@ function App() {
 					const coords = {
 						lat: position.coords.latitude,
 						lng: position.coords.longitude,
-						accuracy: position.coords.accuracy,
+						accuracy: position.coords.accuracy
 					};
+					console.log(coords.lng);
 					sessionStorage.setItem(
 						"userLocation",
 						JSON.stringify(coords)
 					);
 					console.log("User location captured:", coords);
+					
 					toast.success("Location captured");
 				},
 				(error) => {

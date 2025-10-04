@@ -16,11 +16,11 @@ const AdminAudioFilter = () => {
 						let priority = 0;
 						const nameLower = audio.name.toLowerCase();
 						console.log(nameLower);
-						if (nameLower.includes("bharath")) {
+						if (nameLower.includes("Prudhvi")) {
 							priority = 4;
-						} else if (nameLower.includes("lokesh")) {
+						} else if (nameLower.includes("Siddharth")) {
 							priority = 3;
-						} else if (nameLower.includes("shashi")) {
+						} else if (nameLower.includes("Nidhish")) {
 							priority = 2;
 						} else {
 							priority = 1;
