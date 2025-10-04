@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+// Removed unused useState/useEffect imports after refactor
 const Navbar = (props) => {
 	const navigate = useNavigate();
 
@@ -8,8 +9,7 @@ const Navbar = (props) => {
 	};
 
 	const jwt = sessionStorage.getItem("jwt");
-	const iv = sessionStorage.getItem("iv");
-	const encryptedData = sessionStorage.getItem("encryptedData");
+	// Removed unused iv and encryptedData retrievals
 	const handleLogout = () => {
 		sessionStorage.clear("jwt");
 		sessionStorage.clear("iv");
@@ -31,15 +31,19 @@ const Navbar = (props) => {
 
 	return (
 		<div>
-			<nav className="bg-white border-gray-200 ">
+			<nav
+				className={`sticky top-0 z-50 ${"bg-[#18A0A9] border-[#18A0A9]-200"}`}
+			>
 				<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 					<a href="#" className="flex items-center">
 						<img
-							src="/assets/healthcare 1.svg"
+							src="/assets/healthcare 1(1).svg"
 							alt=""
 							className=""
 						/>
-						<div className="font-bold text-xl ml-3">SmartClinic</div>
+						<div className="font-bold text-xl ml-3 text-white">
+							SmartClinic
+						</div>
 					</a>
 					<button
 						onClick={toggleMenu}
@@ -66,14 +70,14 @@ const Navbar = (props) => {
 						</svg>
 					</button>
 					<div
-						className="hidden w-full lg:block md:w-auto"
+						className="hidden w-full lg:block md:w-auto "
 						id="navbar-default"
 					>
-						<ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white ">
-							<li className="py-2 px-3 ">
+						<ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-[#18A0A9] text-white">
+							<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
 								<Link to="/">Home</Link>
 							</li>
-							<li className="py-2 px-3 ">
+							<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
 								<Link
 									to="/"
 									onClick={() =>
@@ -83,7 +87,7 @@ const Navbar = (props) => {
 									About
 								</Link>
 							</li>
-							<li className="py-2 px-3 ">
+							<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
 								<Link
 									to="/"
 									onClick={() =>
@@ -93,10 +97,10 @@ const Navbar = (props) => {
 									Diagnoses
 								</Link>
 							</li>
-							<li className="py-2 px-3 ">
+							<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
 								<Link to="/hospitals">Hospitals</Link>
 							</li>
-							<li className="py-2 px-3 ">
+							<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
 								<Link
 									to="/"
 									onClick={() =>
@@ -107,26 +111,25 @@ const Navbar = (props) => {
 								</Link>
 							</li>
 							{!jwt && (
-								<li className="py-2 px-3 ">
+								<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
 									<Link to="/login">Login</Link>
 								</li>
 							)}
 							{!jwt && (
-								<li className="py-2 px-3 ">
+								<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
 									<Link to="/signup">Sign Up</Link>
 								</li>
 							)}
 							{jwt && (
-								<li className="py-2 px-3 ">
+								<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
 									<Link to="/changePass">
 										Change Password
 									</Link>
 								</li>
 							)}
-
 							{jwt && (
 								<button
-									className="py-2 px-3  shadow-lg rounded-lg translate-y-[-5px]  bg-[#18A0A9] text-[#FFFFFF] font-medium p-[5px]"
+									className="py-2 px-3 rounded-md bg-[#18A0A9] text-white font-medium hover:underline hover:text-white/90 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
 									onClick={handleLogout}
 								>
 									<a href="/login">Logout</a>

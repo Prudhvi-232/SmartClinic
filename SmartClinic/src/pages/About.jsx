@@ -6,17 +6,17 @@ const About = (props) => {
 		{
 			imgUrl: "/assets/image 41.svg",
 			docTitle: "Pediatrician",
-			description: "Expert care for children's health and development"
+			description: "Expert care for children's health and development",
 		},
 		{
 			imgUrl: "/assets/image 42.svg",
 			docTitle: "Cardiologist",
-			description: "Advanced heart and cardiovascular care"
+			description: "Advanced heart and cardiovascular care",
 		},
 		{
 			imgUrl: "/assets/image 43.svg",
-			docTitle: "Dermatologist", 
-			description: "Comprehensive skin and aesthetic treatments"
+			docTitle: "Dermatologist",
+			description: "Comprehensive skin and aesthetic treatments",
 		},
 	]);
 
@@ -42,21 +42,28 @@ const About = (props) => {
 					</h2>
 					<div className="max-w-4xl mx-auto">
 						<p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
-							At SmartClinic, we combine cutting-edge AI technology with expert medical knowledge 
-							to provide accurate, personalized healthcare solutions. Our platform empowers you 
-							with instant health insights while maintaining the highest standards of medical care.
+							At SmartClinic, we combine cutting-edge AI
+							technology with expert medical knowledge to provide
+							accurate, personalized healthcare solutions. Our
+							platform empowers you with instant health insights
+							while maintaining the highest standards of medical
+							care.
 						</p>
 					</div>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
 					{aboutImageProps.map((detail, index) => {
 						return (
-							<AboutImageCard
-								imgUrl={detail.imgUrl}
-								docTitle={detail.docTitle}
-								description={detail.description}
+							<div
 								key={index}
-							/>
+								className="transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-2"
+							>
+								<AboutImageCard
+									imgUrl={detail.imgUrl}
+									docTitle={detail.docTitle}
+									description={detail.description}
+								/>
+							</div>
 						);
 					})}
 				</div>
