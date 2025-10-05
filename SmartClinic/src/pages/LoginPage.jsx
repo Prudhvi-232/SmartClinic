@@ -22,26 +22,40 @@ const LoginPage = () => {
 			const data = await response.json();
 
 			if (response.ok && data.status === "success") {
+				// Persist core session data
 				sessionStorage.setItem("jwt", data.token);
 				sessionStorage.setItem(
 					"encryptedData",
 					data.data.encryptedData
 				);
-				sessionStorage.setItem("email", data.email);
-				sessionStorage.setItem("name", data.name);
+				sessionStorage.setItem("email", data.email || email);
+				sessionStorage.setItem("name", data.name || "");
+
+				// Determine admin based on email (simple whitelist logic)
+				const adminWhitelist = [
+					"prudhvitaduvai@gmail.com",
+					"siddharth2304p@gmail.com",
+				];
+				const isAdmin = adminWhitelist.includes(email.toLowerCase());
+
+				// Store role + legacy flag the navbar can read everywhere
+				if (isAdmin) {
+					sessionStorage.setItem("role", "admin");
+					sessionStorage.setItem("admin_users", "true");
+				} else {
+					sessionStorage.setItem("role", "user");
+					sessionStorage.removeItem("admin_users");
+				}
 
 				toast.success("Login successful!");
 
 				setTimeout(() => {
-					if (
-						email.toLowerCase() === "prudhvitaduvai@gmail.com" ||
-						email.toLowerCase() === "siddharth2304p@gmail.com"
-					) {
+					if (isAdmin) {
 						navigate("/admin-dashboard");
 					} else {
 						navigate("/");
 					}
-				}, 500);
+				}, 400);
 			} else {
 				toast.error(data.message || "Login failed");
 			}

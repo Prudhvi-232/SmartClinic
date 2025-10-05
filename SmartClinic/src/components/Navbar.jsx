@@ -9,6 +9,10 @@ const Navbar = (props) => {
 	};
 
 	const jwt = sessionStorage.getItem("jwt");
+	// Role & legacy admin flag
+	const role = sessionStorage.getItem("role");
+	const adminUsersFlag = sessionStorage.getItem("admin_users") === "true";
+	const isAdmin = (role && role.toLowerCase() === "admin") || adminUsersFlag;
 	// Removed unused iv and encryptedData retrievals
 	const handleLogout = () => {
 		sessionStorage.clear("jwt");
@@ -77,6 +81,13 @@ const Navbar = (props) => {
 							<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
 								<Link to="/">Home</Link>
 							</li>
+							{jwt && isAdmin && (
+								<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
+									<Link to="/admin-dashboard">
+										Admin Dashboard
+									</Link>
+								</li>
+							)}
 							<li className="py-2 px-3 relative hover:underline hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
 								<Link
 									to="/"
